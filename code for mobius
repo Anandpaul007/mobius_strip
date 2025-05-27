@@ -1,0 +1,23 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Parameters
+R, W = 10, 2  # Major radius and width
+a, b = 100, 20  # Resolution
+
+# Parametric equations
+u = np.linspace(0, 2 * np.pi, a)
+v = np.linspace(-W / 2, W / 2, b)
+u, v = np.meshgrid(u, v)
+
+x = (R + v * np.cos(u / 2)) * np.cos(u)
+y = (R + v * np.cos(u / 2)) * np.sin(u)
+z = v * np.sin(u / 2)
+
+# Plotting
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(x, y, z, cmap='coolwarm', edgecolor='none')
+ax.set_title("Möbius Strip")
+plt.show()
